@@ -1,6 +1,7 @@
 import { State, Action, StateContext, Selector} from '@ngxs/store';
 import { Tutorial } from './../models/tutorial.model';
 import { AddTutorial, RemoveTutorial} from './../actions/tutorial.actions';
+import { removeAllListeners } from 'cluster';
 
 export class TutorialStateModel {
     tutorials: Tutorial[];
@@ -25,6 +26,13 @@ export class TutorialState {
         const state = getState();
         patchState({
             tutorials: [...state.tutorials, payload]
+        });
+    }
+
+    @Action(RemoveTutorial)
+    removeAllListeners({getState, patchState}: StateContext<TutorialStateModel>, {payload}: RemoveTutorial) {
+        patchState({
+            tutorials: getState().tutorials.filter(x => x.name !== payload)
         });
     }
 }
