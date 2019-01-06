@@ -1,7 +1,6 @@
 import { State, Action, StateContext, Selector} from '@ngxs/store';
 import { Tutorial } from './../models/tutorial.model';
 import { AddTutorial, RemoveTutorial} from './../actions/tutorial.actions';
-import { removeAllListeners } from 'cluster';
 
 export class TutorialStateModel {
     tutorials: Tutorial[];
